@@ -1,8 +1,11 @@
 #!/bin/bash
+#
+# Usage: pub-bms-data.sh bms-data.csv
+#
+# Supported csv format is: 34334,M_300510,60Min_W-PDU-I5E-B2 電力 計測,2020/06/01 00:00:00,29.2000007629395,kW
+#
 
-# 34334,M_300510,60Min_W-PDU-I5E-B2 電力 計測,2020/06/01 00:00:00,29.2000007629395,kW
-
-sendInterval=1
+sendInterval=60
 
 while read line
 do
@@ -17,7 +20,6 @@ do
       "unit": .[5]
     }
   ')
-#  ' | sed 's/"/\\\"/g')
 
   azureApiVersion=2016-11-14
   auzreSasToken=$(cat ./sas.txt)
